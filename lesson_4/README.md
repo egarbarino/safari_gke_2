@@ -187,15 +187,9 @@ kubectl logs -l job-name=multiplier --tail=-1 | wc
 kubectl logs -l job-name=multiplier --tail=-1 | sort -g
 ```
 
-_end of section_
 
----
+## 4.2 Scheduling Recurring Tasks Using CronJobs
 
-
-
-## 4.2 Scheduling Recurring Tasks Using CronJobs
-
-``
 Pane 3.right: Delete jobs
 
 ```

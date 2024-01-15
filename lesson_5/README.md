@@ -160,7 +160,8 @@ _end of section_
 
 ---
 
-## 5.2 Protecting Credentials Using Secrets
+
+## 5.2 Protecting Credentials Using Secrets
 
 Pane 3.right: Delete everything
 
@@ -240,8 +241,7 @@ _end of section_
 
 ---
 
-
-## 5.3 Instrumental Stateful Applications Using StatefulSets - Part I
+## 5.3 Instrumenting Stateful Applications Using StatefulSets - Part I
 
 
 Delete everything
@@ -421,9 +421,7 @@ Delete one random server Pod
 kubectl delete pod/server-1
 ```
 
-
-
-## 5.4 Instrumental Stateful Applications Using StatefulSets - Part II
+## 5.4 Instrumenting Stateful Applications Using StatefulSets - Part II
 
 
 ### Disk Persistence using Persistent Volume Claims
