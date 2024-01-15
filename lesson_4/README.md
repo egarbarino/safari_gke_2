@@ -1,4 +1,4 @@
-# S3 Configuration and Jobs
+# Lesson 4 - Jobs and DaemonSets
 
 Segment TMUX Setup
 
@@ -36,211 +36,7 @@ Pane 4
 cd ~/safari_gke/config_jobs/
 ```
 
-## S3.1 Externalizing Configuration using ConfigMap
-
-
-### Example of Hard Coded Configuration
-
-```
-vi podHardCodedEnv.yaml
-```
-
-```
-kubectl apply -f podHardCodedEnv.yaml
-```
-
-```
-kubectl logs pod/my-pod
-```
-
-### Define ConfigMap Separately
-
-
-```
-vi simpleconfigmap.yaml
-```
-
-```
-kubectl apply -f simpleconfigmap.yaml
-```
-
-```
-kubectl describe configmap/data-sources
-```
-
-Note there is an imperative form: `kubectl create configmap --help`
-
-### Reference External Configuration from Pod
-
-Delete Old Pod
-
-```
-kubectl delete pod/my-pod
-```
-
-Explore
-
-
-```
-vi podWithConfigMapReference.yaml
-```
-
-Apply
-
-```
-kubectl apply -f podWithConfigMapReference.yaml
-```
-
-Check logs
-
-```
-kubectl logs pod/my-pod
-```
-
-### Referencing Specific Fields
-
-Explore:
-
-```
-vi podManifest.yaml
-```
-
-### Live Configuration Changes using Virtual File System
-
-Pane 3.right: Delete everything
-
-```
-kubectl delete all --all
-```
-
-Explore
-
-```
-vi configMapLongText.yaml
-```
-
-Apply
-
-```
-kubectl apply -f configMapLongText.yaml
-```
-
-Explore `volume`, `volumeMounts`
-
-```
-vi podManifestVolume.yaml
-```
-
-Apply 
-
-```
-kubectl apply -f podManifestVolume.yaml
-```
-
-Pane 3.left:
-
-```
-kubectl logs -f pod/my-pod
-```
-
-Explore 
-
-```
-vi configMapLongText_changed.yaml
-```
-
-Apply
-
-```
-kubectl apply -f configMapLongText_changed.yaml
-```
-
-_end of section_
-
----
-
-## S3.2 Protecting Credentials using Secrets
-
-Pane 3.right: Delete everything
-
-```
-kubectl delete all --all
-```
-
-Set up secrets monitoring 
-
-Pane 2:
-
-```
-watch -n 1 kubectl get secret
-```
-
-Pane 3.left
-
-```
-watch -n 1 kubectl get secret/my-secrets -o yaml
-```
-
-### Imperative Form
-
-```
-kubectl create secret generic my-secrets \
-    --from-literal=mysql_user=ernie \
-    --from-literal=mysql_pass=HushHush
-```
-
-### Declarative Form
-
-```
-kubectl delete secret/my-secrets
-```
-
-```
-echo -n ernie | base64
-```
-
-```
-echo -n HushHush | base64
-```
-
-```
-vi secrets/secretManifest.yaml
-```
-
-```
-kubectl apply -f secrets/secretManifest.yaml
-```
-
-### Injecting Secrets
-
-```
-vi secrets/podManifestFromEnv.yaml
-```
-
-```
-kubectl apply -f secrets/podManifestFromEnv.yaml
-```
-
-```
-kubectl logs pod/my-pod
-```
-
-### Further Use Cases (Student Only)
-
-* Select specific variables: `secrets/podManifesSelectedEnvs.yaml`
-* Mount secrets as volume: `secrets/podManifestVolume.yaml`
-
-### Docker Secrets (Student Only)
-
-* Check out `../getting_started/docker_hub_fix.sh`
-* Note `spec.imagePullSecrets` on `secrets-docker/podFromPrivate.yaml`
-
-_end of section_
-
----
-
-## S3.3 Implementing Batch Processes using Jobs
-
+## 4.1 Implementing Batch Processes Using Jobs
 
 Pane 4
 
@@ -395,9 +191,11 @@ _end of section_
 
 ---
 
-## S3.4 Scheduling Recurring Tasks Using CronJobs
 
 
+## 4.2 Scheduling Recurring Tasks Using CronJobs
+
+``
 Pane 3.right: Delete jobs
 
 ```
@@ -451,6 +249,95 @@ kubectl patch cronjob/simple \
 ```
 
 _end of segment_
+
+
+
+## 4.3 Running Server-Wide Services Using DaemonSets
+
+### TCP-Based Daemons
+
+Explore
+
+```
+vi logDaemon.yaml
+```
+
+Apply
+
+```
+kubectl apply -f logDaemon.yaml
+```
+
+Note that there is exactly one Pod per Node
+
+(!) Note use of Downward API for getting `HOST_IP`
+
+```
+vi logDaemonClient.yaml
+```
+
+Apply
+
+```
+kubectl apply -f logDaemonClient.yaml
+```
+
+Pane 3.right: Check logs per a given node
+
+```
+kubectl exec logd-XXXXXXXX -- cat /var/node_log
+```
+
+### File-Based Daemons
+
+Delete everything
+
+```
+kubectl delete all --all
+```
+
+Explore 
+
+```
+vi logCompressor.yaml
+```
+
+Apply
+
+```
+kubectl apply -f logCompressor.yaml
+```
+
+Pane 3.right:
+
+```
+kubectl exec logcd-XXXXXXX -- find /var/log -name "*.gz"
+```
+
+Explore 
+
+```
+vi logCompressorClient.yaml
+```
+
+Apply
+
+```
+kubectl apply -f logCompressorClient.yaml
+```
+
+Check
+
+```
+kubectl exec logcd-XXXXXX -- tar -tf /var/log/all-logs-XXXXXXX.tar.gz
+```
+
+_end of section_
+
+---
+
+
+
 
 
 

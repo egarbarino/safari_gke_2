@@ -1,4 +1,4 @@
-# S2 High Availability and High Scalability
+# Lesson 3 - High Availability and High Scalability
 
 Segment TMUX Setup
 
@@ -40,7 +40,7 @@ Panel 4
 cd ~/safari_gke/ha_and_hs/
 ```
 
-## S2.1 Launching Deployments
+## 3.1 Defining and Launching Deployments
 
 
 Create deployment
@@ -75,7 +75,7 @@ Further details at: https://garba.org/posts/2020/k8s-life-cycle/
 
 ---
 
-## S2.2 Rolling and Blue/Green Deployments
+## 3.2 Performing Rolling and Blue/Green Deployments
 
 
 Pane 3.right:
@@ -142,8 +142,7 @@ Further details at: https://garba.org/posts/2020/k8s-life-cycle/
 
 ---
 
-## S2.3 Instrumenting Static Scaling and Autoscaling
-
+## 3.3 Instrumenting Static Scaling and Autoscaling
 
 Delete everything and launch a new deployment
 
@@ -199,7 +198,7 @@ _end of section_
 
 ---
 
-## S2.4 Pod-to-Pod Access
+## 3.4 Configuring Pod-to-Pod Service Access
 
 
 Delete all previous deployments and Pods
@@ -262,7 +261,7 @@ _end of section_
 
 ---
 
-## S2.5 Publishing Services on the Public Internet
+## 3.5 Publishing Services on the Public Internet
 
 Pane 3.left:
 
@@ -286,8 +285,7 @@ _end of section_
 
 ---
 
-## S2.6 Zero Downtime Releases
-
+## 3.6 Performing Zero Downtime Deployments
 
 Pane 3.left: delete all previous deployments and services
 
