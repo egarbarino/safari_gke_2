@@ -158,7 +158,7 @@ Fundamentals
 
 Set up TMUX 
 
-Create file `.tmux.conf` and add the below line to have
+Create file `~/.tmux.conf` and add the below line to have
 the status bar visible at all times:
 
 ```

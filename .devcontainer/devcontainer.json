@@ -1,0 +1,6 @@
+{
+	"postCreateCommand": "bash -i .devcontainer/postCreate.sh",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/maven-sdkman:2.0.14": {}
+	}
+}
