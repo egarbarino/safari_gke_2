@@ -1,5 +1,67 @@
 # Lesson 1 - Getting Started with GKE
 
+Instructor Only
+
+Main Browser
+
+* Tab 1: https://console.cloud.google.com
+* Tab 2: https://shell.cloud.google.com/?show=terminal
+* Tab 3: https://crontab.guru/
+* Tab 4: https://garba.org/posts/2018/k8s_pod_lc/
+* Tab 5: https://garba.org/posts/2020/k8s-life-cycle/
+
+TMUX Setup (Tab 2)
+
+
+```
+|------------------|
+|        1         |
+|------------------|
+|        2         |
+|------------------|
+|        3         | 
+|------------------|
+|        4         |
+--------------------
+```
+
+Pane 4
+
+```
+git clone https://github.com/egarbarino/safari_gke_2
+cd ~/safari_gke_2/lesson_1/
+```
+
+```
+./docker_hub_fix.sh
+```
+
+Student Only
+
+Fundamentals
+
+1. Create an account at [https://cloud.google.com/](https://cloud.google.com/)
+2. Set up billing (e.g., enter your credit card)
+3. Create a project (we use 'safari-gke' in our examples)
+4. Associate billing with the project
+
+Set up TMUX 
+
+Create file `~/.tmux.conf` and add the below line to have
+the status bar visible at all times:
+
+```
+set -g status on
+```
+
+Command Prompt 
+
+Set a shorter command prompt if useful:
+
+```
+export PS1='$ '
+```
+
 ## About Your Instructor
 
 Hello, and welcome to this Kubernetes on GKE Video Course. 
@@ -28,7 +90,7 @@ You'll also have the opportunity to discover how a zero downtime deployment work
 
 ## Lesson 1: Getting Started with GKE
 
-Welcome to the first lesson.
+Welcome to the first lesson, Getting Started with GKE. In this lesson you'll learn how set up a cloud-based environment that allows you to explore Kubernetes using your own account.
 
 ## (Blank)
 
@@ -245,185 +307,6 @@ This command would delete our cluster asynchronously and without producing any o
 
 
 
-
-
-
-
-
-
-## Pre-Course Set Up
-
-### Instructor Only
-
-Main Browser
-
-* Tab 1: https://console.cloud.google.com
-* Tab 2: https://shell.cloud.google.com/?show=terminal
-* Tab 3: https://crontab.guru/
-* Tab 4: https://garba.org/posts/2018/k8s_pod_lc/
-* Tab 5: https://garba.org/posts/2020/k8s-life-cycle/
-
-On Tab 2 (Google Cloud Shell)
-
-Create three TMUX Windows (CTRL+B C) and name them (CTRL+B ,) as follows:
-
-0. BEFORE
-1. AFTER
-3. Main
-4. Debugging
-
-### Windows 0 (BEFORE) and 1 (AFTER)
-
-On both Window 0 (BEFORE) and Window 1 (AFTER), set up panes as follows:
-
-```
-|------------------|
-|        1         |
-|------------------|
-|        2         |
-|------------------|
-|        3         | 
-|------------------|
-|        4         |
---------------------
-```
-
-**Note:** Do not run any of the commands yet
-
-Pane 1 - Monitor clusters
-
-```
-gcloud container clusters list
-```
-
-Pane 2 - Monitor compute
-
-```
-gcloud compute instances list | grep NAME
-```
-
-Pane 3 - Monitor disks
-
-```
-gcloud compute disks list | grep NAME
-```
-
-Pane 4 - Cluster Create Command
-
-```
-gcloud container clusters create my-cluster \
-    --zone europe-west2-a \
-    --project safari-gke
-```
-
-
-### Window 0 (BEFORE)
-
-Run only the commands on Panes 1-3 but **not** on Pane 4
-
-### Window 1 (AFTER)
-
-Step 1
-
-Run the `kubectl container clusters create ...` command on Pane 4 and wait until it completes.
-
-Step 2
-
-Run the commands that you pasted on Panes 2-3
-
-Step 3
-
-Run the Docker Hub fix on Window 2 (MAIN):
-
-```
-git clone https://github.com/egarbarino/safari_gke_2
-cd ~/safari_gke_2/lesson_1/
-```
-
-```
-./docker_hub_fix.sh
-```
-
-### Window 2 (Main)
-
-```
-|------------------|
-|        1         |
-|------------------|
-|        2         |
-|------------------|
-|        3         | 
-|------------------|
-|        4         |
---------------------
-```
-
-Pane 1: Monitor Pod activity
-
-```
-watch -n 1 kubectl get pod
-```
-
-Pane 2: Monitor events
-
-```
-kubectl get -w events
-```
-
-Pane 3: Leave empty
-
-Pane 4: Run commands here
-
-
-### Window 3 (Debugging)
-
-```
-|------------------|
-|        1         |
-|------------------|
-|        2         |
-|------------------|
-```
-
-Pane 1 - Monitor Events
-
-```
-kubectl get -w events
-```
-
-Pane 2: - Watch Node Activity
-
-```
-watch -n 1 kubectl top node
-```
-
-**Get back to Window 2 (Main) before starting**
-
-### Student Only
-
-Fundamentals
-
-1. Create an account at [https://cloud.google.com/](https://cloud.google.com/)
-2. Set up billing (e.g., enter your credit card)
-3. Create a project (we use 'safari-gke' in our examples)
-4. Associate billing with the project
-
-Set up TMUX 
-
-Create file `~/.tmux.conf` and add the below line to have
-the status bar visible at all times:
-
-```
-set -g status on
-```
-
-Command Prompt 
-
-Set a shorter command prompt if useful:
-
-```
-export PS1='$ '
-```
 
 
 
