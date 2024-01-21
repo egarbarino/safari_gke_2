@@ -32,9 +32,7 @@ git clone https://github.com/egarbarino/safari_gke_2
 cd ~/safari_gke_2/lesson_1/
 ```
 
-```
-./docker_hub_fix.sh
-```
+
 
 Student Only
 
@@ -80,7 +78,7 @@ This course was designed for the absolute beginner in mind, who is looking to in
 
 This course is also self-contained and does not demand advanced knowledge in areas such as cloud, virtualization, or programming. 
 
-Not even proficiency in Docker is required. Since Kubernetes is effectively a Docker host, the reader can experiment with Docker and public Docker images found in Docker Hub for the first time on the Google Cloud Platform itself without installing the Docker runtime on their local machine.
+Not even proficiency in Docker is required. Since Kubernetes is effectively a Docker host, you can experiment with Docker and public Docker images found in Docker Hub for the first time on the Google Cloud Platform itself without installing the Docker runtime on your local machine.
 
 Now, in terms of concrete learning objectives, ...
 
@@ -252,10 +250,15 @@ gcloud container clusters create my-cluster \
 
 (!) This will take a while so we will fast forward to the end
 
-Now that the command has completed, we can run again the previous commands to see what resources we ended up with.
+Now that the command has completed, there's one more thing to do:
+
+```
+./docker_hub_fix.sh
+```
+
+We can run again the previous commands to see what resources we ended up with.
 
 Rerun commands in Panes 1-3 after creation
-
 
 ### Introduce Nodes and Objects
 

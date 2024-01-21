@@ -1,6 +1,6 @@
 # FAQ
 
-## I don't like using the Google Cloud Shell. Can I use my favourite OS and shell?
+## I don't like using the Google Cloud Shell. Can I use my favorite OS and shell?
 
 Yes. There's nothing special about the Google Cloud Shell; it is just, for all intents and purposes, a Linux VM. It is just convenient for the course because it can be used directly on a web browser and comes with the likes of Python and TMUX preinstalled. Here below, I provide a general workflow for setting up the same environment:
 
