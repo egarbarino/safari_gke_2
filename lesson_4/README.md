@@ -17,7 +17,7 @@ Segment TMUX Setup
 Pane 1
 
 ```
-watch -n 1 kubectl get pod
+watch -n 1 kubectl get pod -L job-name
 ```
 
 Pane 2
@@ -161,8 +161,6 @@ Explore logs
 kubectl logs -l job-name=even-seconds 
 ```
 
-_end of section_
-
 ### Externally Coordinated Batch Process
 
 
@@ -243,7 +241,7 @@ Luckily, Kubernetes implements a dedicated controller type for this purpose: the
 
 ## Scheduling Recurring Tasks Using CronJobs
 
-The need to schedule recurrent tasks brought the Kubernetes team to design a distinct controller modeled after the traditional cron utility found in Unix-like operating systems. 
+The need to schedule recurrent tasks brought the Kubernetes team to design a distinct controller, modeled after the traditional cron utility found in Unix-like operating systems. 
 
 Unsurprisingly, the controller is called CronJob, and it uses the same scheduling specification format as the crontab file.
 

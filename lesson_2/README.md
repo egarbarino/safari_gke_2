@@ -23,7 +23,7 @@ watch -n 1 kubectl get pod -o wide
 Pane 2
 
 ```
-watch -n 1 kubectl get pod
+kubectl get event --watch
 ```
 
 Pane 3.left: Leave empty for now
@@ -306,7 +306,7 @@ The implementation of self-healing mechanisms is performed using two mechanisms:
 
 We use a liveness probe to interrogate whether the container is alive and in good health.
 
-The readiness probe, instead, is used to verify whether a container is ready to service requests. Instrumenting the readiness probe is fundamental in applications that have a long startup time, or than undergo maintenance blackouts.
+The readiness probe, instead, is used to verify whether a container is ready to service requests. Instrumenting the readiness probe is fundamental in applications that have a long startup time, or that undergo maintenance blackouts.
 
 Both liveness and readiness probes can be instrumented using different strategies. 
 
@@ -498,7 +498,7 @@ Pane 1
 watch -n 1 "kubectl get pods -L env,author"
 ```
 
-Labels are not used just for display purposes, but to select Kubernetes expressions using so-called selector and set-based expressions.
+Labels are not used just for display purposes, but to select Kubernetes resources using so-called selector and set-based expressions.
 
 Example 1: Pods whose author ISN'T Ernie
 

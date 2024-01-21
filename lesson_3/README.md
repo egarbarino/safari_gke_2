@@ -17,7 +17,7 @@ Segment TMUX Setup
 Pane 1
 
 ```
-watch -n 1 kubectl get pod -o wide
+watch -n 1 kubectl get pod 
 ```
 
 Pane 2
@@ -37,7 +37,7 @@ Pane 3.right: Leave empty for now
 Panel 4
 
 ```
-cd ~/safari_gke/lesson_3/
+cd ~/safari_gke_2/lesson_3/
 ```
 
 ## High Availability and Service Discovery
@@ -124,7 +124,7 @@ kubectl set image deploy/nginx nginx=nginx:1.9.1
 
 ## 3.2 Performing Rolling and Blue/Green Deployments
 
-Rolling and Blue/Green Deployments are release management strategies.
+Now, we will explore how Rolling and Blue/Green Deployments work.
 
 ## Performing Rolling and Blue/Green Deployments
 
@@ -359,7 +359,7 @@ Both the cases of Pod-to-Pod connectivity, and Public Internet access use the sa
 
 ## Publishing Services on the Public Internet
 
-Accessing Pods from the public Internet involves creating LoadBalancer service type. 
+Accessing Pods from the public Internet involves creating a LoadBalancer service type. 
 
 Even though the Service controller acts as a load balancer when used internally, when we set its type explicitly to LoadBalancer, what we are saying is that we want an actual Google Cloud Platform's external load balancer to be created and then associated with our service. Such external load balancer then in turn enables access from the public Internet.
 
@@ -371,6 +371,12 @@ Pane 3.left:
 
 ```
 watch -n 1 gcloud compute forwarding-rules list 
+```
+
+Pane 3.right
+
+```
+watch "kubectl get service/nginx3"    
 ```
 
 Create a service of type LoadBalancer
@@ -428,7 +434,7 @@ Wait for public IP address
 Pane 3.left: Watch server with IP 
 
 ```
-cd ~/safari_gke/ha_and_hs/
+cd ~/safari_gke_2/lesson_3/
 ```
 
 ```
