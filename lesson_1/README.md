@@ -207,7 +207,7 @@ All we have accomplished so far is have access to a command line interface, set 
 
 Now that we can access the gcloud command, we will it use to create our first Kubernetes cluster, and then show you how to delete it as well.
 
-The gcloud command also creates the configuration file used by the kubectl command, which is the native command used to manage Kubernetes. You can think of as the gcloud command handing over Kubernetes control to the kubectrl command once the cluster is created... just as shown on the diagram.
+The gcloud command also creates the configuration file used by the kubectl command, which is the native command used to manage Kubernetes. You can think of as the gcloud command handing over control to the kubectl command once the cluster is created... just as shown on the diagram.
 
 Let's now see this process in action...
 
@@ -218,7 +218,7 @@ Let's now see this process in action...
 
 Before we proceed, in addition to painting our Kubernetes Architecture diagram one figure at a time, there's also another peculiarity about this course I wanted to mention.
 
-I'm obsessed about following an observability-first approach. By that I mean that I want you to observe the side effects of everything we so that you can understand what are the consequences of our actions. 
+I'm obsessed about following an observability-first approach. By that I mean that I want you to observe the side effects of everything we do that you can understand what are the consequences of our actions. 
 
 For this reason, before we create our first Kubernetes cluster, I want you to understand what resources will be created as a result.
 
@@ -251,6 +251,10 @@ gcloud container clusters create my-cluster \
 (!) This will take a while so we will fast forward to the end
 
 Now that the command has completed, there's one more thing to do:
+
+```
+cd ~/safari_gke_2/lesson_1/
+```
 
 ```
 ./docker_hub_fix.sh
