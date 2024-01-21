@@ -70,23 +70,31 @@ My name is Ernesto Garbarino, or just 'Ernie' and I'll be your instructor.
 
 I work as an Enterprise Architect helping global enterprises migrate to the cloud and adopt microservices-based architectures.
 
-Kubernetes, and in particular, Google Cloud's managed offering, GKE, picked my interest from an early beginning, which led to me write a book on this subject. 
+Kubernetes, and in particular, the Google Cloud's managed offering, GKE, picked my interest from an early beginning, which led to me write a book on the subject. 
 
-I also have written about machine learning and other IT topics on my blog at garba.org
+Now, I have summarized the book's kay lessons into this video course.
 
 ## Course Learning Objectives
 
-This course has the aim of getting you familiarized with the fundamentals of GKE without prior knowledge other than some familiarity with Linux and shell scripts.
+This course was designed for the absolute beginner in mind, who is looking to internalize the foundational capabilities that Kubernetes brings to the table.
 
-You'll first learn how to deploy containers using Pods using the Deployment and Service controllers to achieve high scalability and high availability.
+This course is also self-contained and does not demand advanced knowledge in areas such as cloud, virtualization, or programming. 
+
+Not even proficiency in Docker is required. Since Kubernetes is effectively a Docker host, the reader can experiment with Docker and public Docker images found in Docker Hub for the first time on the Google Cloud Platform itself without installing the Docker runtime on their local machine.
+
+Now, in terms of concrete learning objectives, ...
+
+you'll first learn how to deploy containers wrapped as Pods using the Deployment and Service controllers, so you can achieve high scalability and high availability.
 
 Then, you'll learn how to externalize configuration using the ConfigMap and Secrets controllers. 
 
-We'll also cover cover advance topics such as DaemonSets and Stateful services.
+We'll also cover advanced topics such as DaemonSets and Stateful services.
 
-This knowledge which enable you to set up your own Kubernetes clusters on GKE, to launch and control containers in them throughout their life cycle. 
+...
 
-You'll also have the opportunity to discover how a zero downtime deployment works, and how to set up a zero downtime deployment rollout yourself.
+This knowledge will enable you to set up your own Kubernetes clusters on GKE, so that you can launch and control containers, and manage their life cycle. 
+
+You'll also have the opportunity to discover how a blue/green deployment is implemented, and how to deploy your applications with zero downtime.
 
 ## Lesson 1: Getting Started with GKE
 
@@ -108,7 +116,9 @@ Before we begin, let's understand a few things about GKE first...
 
 Kubernetes was originally designed by Google, and the project is now maintained by the Cloud Native Computing Foundation.
 
-GKE, which stands for Google Kubernetes Engine, is the first and oldest mainstream managed Kubernetes service. Kubernetes is today the most popular and widely adopted container orchestrator in the world.
+GKE, which stands for Google Kubernetes Engine, is the first and oldest mainstream managed Kubernetes service. 
+
+Kubernetes is today the most popular and widely adopted container orchestrator in the world.
 
 Even if you were to adopt a different Kubernetes distribution, be it managed or on-prem, GKE still remains the most developer-friendly implementation.
 
@@ -128,13 +138,13 @@ In the fourth lesson, color-coded in purple, you'll learn how to run batch proce
 
 Finally, the fifth lesson, color-coded in red, you'll learn how to externalize configuration using the ConfigMap and Secrets controllers, and you'll also deep dive into the art of implementing StatefulSets.
 
-You don't need to memorize this picture. We'll be painting this picture, one step at a time, as we progress through this course.
+You don't need to memorize this picture. We'll be painting it from scratch, one step at a time, as we progress through this course.
 
 ## Course Resources
 
 All of the code that I'll demonstrate, as well as my own narrative is open source and available at the URL that you see on the screen.
 
-You can also browse my book to explore some of the more advanced topics such as StatefulSets.
+You can also read my book on the O'Reilly platform to explore some of the more advanced topics such as StatefulSets.
 
 ## 1.2 Setting up The Google Cloud Shell and GKE (Splash)
 
@@ -142,11 +152,11 @@ We will now get practical by setting up the Google Cloud Shell and enabling acce
 
 ## Setting Up The Google Cloud Shell and GKE 
 
-As I said a few moments ago, this course is structured in a such way that we will work on exploring Kubernetes one step at a time. As such, the screen that you see now is largely empty.
+As I said a few moments ago, this course is structured in such a way that we will work on exploring Kubernetes one step at a time. As such, the screen that you see now is largely empty.
 
-In the beginning our first goal is to gain access to the gcloud command. The gcloud command acts as so-called God command since it allows interacting with all Google Cloud services. Nautrally, the gcloud command uses the Google Cloud APIs behind the scenes. 
+In the beginning, our first goal is to gain access to the gcloud command. The gcloud command acts as so-called God command since it allows interacting with all Google Cloud services. Nautrally, the gcloud command uses the Google Cloud APIs behind the scenes. 
 
-In this course, we won't be using the web console because web-based workflows are hard to automate, script, and repeat. While using the command line is not quite the same as defining infrastructure as code using the likes of Terraform, it takes us a step closer in terms of understanding what resources are created as a result of our interactions.
+In this course, we won't be using the web console because web-based workflows are hard to automate, script, and repeat. While using the command line is not quite the same as defining infrastructure as code---using the likes of Terraform, it takes us a step closer in terms of understanding what resources are created as a result of our interactions.
 
 As I work with the terminal, you'll notice that I divide my screen in multiple panes. I use a tool called TMUX for this purpose, which comes included with the Google Cloud Shell. You can get TMUX for your favorite Linux distribution as well as MacOS from github.com/tmux (T M U X)
 
@@ -158,11 +168,11 @@ Let's get started
 
 Go to [https://cloud.google.com/](https://cloud.google.com/)
 
-I assume that you've already registered your Google Cloud account. To access the main Google Cloud's you click on Console or go to console.cloud.google.com.
+I assume that you've already registered your Google Cloud account. To access the main Google Cloud's main console you click on Console or go to console.cloud.google.com.
 
 Once in the console, we need to do things in the context of a project. Our sample project is called safari-gke.
 
-If you don't have a default project selected, or you want to select a different one, you can click on top left dropdown menu, and select a different project, or click on NEW PROJECT.
+If you don't have a default project selected, or you want to select a different one, you can click on the top left dropdown menu, and select a different project, or click on NEW PROJECT.
 
 As we'll be using the command line, rather than the web console, we need to locate the Google Cloud Shell icon which has a command line interface icon.
 
@@ -193,24 +203,26 @@ gcloud services enable container.googleapis.com
 
 ## 1.3 Creating and Destroying Kubernetes Clusters (Splash)
 
-All we have accomplished so far is have access to a command line interface, set the context to our project named safari-gke, and enabled access to the Kubernetes service API. We are also pre-authenticated with the Google Cloud Platform so we have everything we need to create our first Kubernetes cluster.
+All we have accomplished so far is have access to a command line interface, set the context to our project named safari-gke, and enable access to the Kubernetes service API. We are also pre-authenticated with the Google Cloud Platform so we have everything we need to create our first Kubernetes cluster.
 
 ### Creating and Destroying Kubernetes Clusters (Architecture Step)
 
-Now that we can access the gcloud command we will use to create our first Kubernetes cluster, and then delete it.
+Now that we can access the gcloud command, we will it use to create our first Kubernetes cluster, and then show you how to delete it as well.
 
-The gcloud commands also creates the configuration file used by the kubectl command, which is the native command to manage Kubernetes. You can think of as the gcloud command handing over Kubernetes control to the kubectrl command once the cluster is created.
+The gcloud command also creates the configuration file used by the kubectl command, which is the native command used to manage Kubernetes. You can think of as the gcloud command handing over Kubernetes control to the kubectrl command once the cluster is created... just as shown on the diagram.
 
-Let's see this process in action...
+Let's now see this process in action...
 
 
-### (Screen Share - Google Cloud Shell)
+### (Screen Share) Google Cloud Shell
 
 ### Cluster Creation and Deletion
 
-Before we proceed, in addition to painting our Kubernetes Architecture diagram one figure at a time, there's also another peculiarity of this course and it is that we want to be observability-oriented. By that I mean that we want to observe the side effects of everything we do to understand what are the consequences of our actions. 
+Before we proceed, in addition to painting our Kubernetes Architecture diagram one figure at a time, there's also another peculiarity about this course I wanted to mention.
 
-Before we create our first Kubernetes cluster, let's take a look at what resources we have....
+I'm obsessed about following an observability-first approach. By that I mean that I want you to observe the side effects of everything we so that you can understand what are the consequences of our actions. 
+
+For this reason, before we create our first Kubernetes cluster, I want you to understand what resources will be created as a result.
 
 Pane 1 - Clusters
 
@@ -254,10 +266,16 @@ An interesting and useful aspect of Kubernetes is that most components are defin
 The nodes that represent a Kubernetes cluster are also treated as regular resources. For example...
 
 
-kubectl get resource lists the instances available for a resource type...
+Google Cloud Perspective
 
 ```
-kubectl get node
+gcloud compute instances list | grep NAME
+```
+
+Kubernetes Perspective
+
+```
+kubectl get node -o wide
 ```
 
 We can get more details about each specific resource instance by referencing its identifier

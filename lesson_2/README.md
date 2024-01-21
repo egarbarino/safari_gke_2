@@ -38,15 +38,15 @@ cd ~/safari_gke_2/lesson_2/
 
 ## Lesson 2: Pods
 
-Welcome to Lesson 2, Pods. A pod is the most fundamental and atomic resource type in Kubernetes. A Pod wraps a container so that can we can define extra properties that help describe how the Pod runs and behaves in our environment. 
+Welcome to Lesson 2, Pods. A pod is the most fundamental and atomic resource type in Kubernetes. A Pod wraps a container so that can we can define extra properties that help describe how the container runs and behaves in our environment. 
 
 This lesson is organized into five modules:
 
-2.1 Launching Docker Containers Using Pods
-2.2 Managing the Pod’s Lifecycle
-2.3 Implementing Self-Healing Mechanisms
-2.4 Segregating Workloads Using Namespaces
-2.5 Selecting Objects Using Labels
+- 2.1 Launching Docker Containers Using Pods
+- 2.2 Managing the Pod’s Lifecycle
+- 2.3 Implementing Self-Healing Mechanisms
+- 2.4 Segregating Workloads Using Namespaces
+- 2.5 Selecting Objects Using Labels
 
 ## Learning Objectives
 
@@ -67,7 +67,7 @@ The first thing we need to do is learn how to launch Docker containers using the
 
 ## Launching Docker Containers Using Pods (Architecture)
 
-We return again to our Kubernetes diagram.
+We return again to our Kubernetes architecture diagram.
 
 As we can see, a Pod is a resource that gets deployed onto a given Kubernetes worker node. In turn, a Pod wraps one or more Docker containers. Most Pods, and the ones that we will configure and launch in this course contain only a single Docker container.
 
@@ -75,8 +75,9 @@ Containers are normally hosted in so-called container registry. We'll be using p
 
 We'll look at three use cases involving the running of containers using the Pod mechanism.
 
-The first use is case is that running one off commands such as the date command.
-The second use case is that of creating a tiny steady virtual machine we can log onto
+The first use is case is that of running one off commands such as the date command.
+The second use case is that of creating a tiny steady virtual machine that we can log onto.
+
 The third case, and most common one, is that of a web server or microservice.
 
 We'll also be looking at the use of a Pod manifest, which is a configuration file in which can establish the port on which each container will mapped to, what labels it has, and where to find its image in a container registry.
@@ -229,17 +230,21 @@ kubectl apply -f /tmp/nginx.yaml
 
 ## 2.3 Managing the Pod's Life Cycle
 
-Now that we've seen how to run Pods in different modes, let's understand more about the Pod's life cycle.
+Now that we've seen how to run Pods in different modes, let's delve into the Pod's life cycle.
 
 ## Managing The Pod's Life Cycle
 
-At a high level, and when querying the status of a Pod from the command line, we normally see the Pod's status in the Pending state when they are initializing, and in the Running state once the initialization has completed. The Pod then terminates either successfully or with a failed status.
+At a high level, and specially, when querying the status of a Pod from the command line, we normally see the Pod's status in the Pending state when they are initializing, and in the Running state once the initialization has completed. 
+
+The Pod then terminates either successfully or with a failed status.
 
 When entering the Pending state, the first think that happens is the mounting of storage. Containers have their own virtual file system but we may also mount block devices, network file systems, virtual configuration drives and much more. All of this takes place first.
 
 Once all applicable file systems are mounted, we have the opportunity to run initialization containers. These are containers other than the primary container which we may want to run to initialize the Pod.
 
-When entering the Running state, we can specify own own startup command to override whatever initialization process comes by default with the container. Immediately after the Docker image's---or our own---start, we can still launch a secondary process using the PostStart hook. 
+When entering the Running state, we can specify our own startup command to override whatever initialization process comes by default with the container. 
+
+But that's not the only thing we can do. Right after the container's command start, we can launch a _secondary_ process using the PostStart hook. 
 
 At this point the Pod is running steadily but we may decide to delete it, or perhaps a scaling strategy may decide that it is no longer necessary. Whatever the reason, we can intercept any termination event using the PreStop hook, which allow us to perform some cleanup or run a graceful shutdown process within a grace period window. 
 
@@ -300,7 +305,8 @@ Pods benefit from a number of mechanisms, not only to control their life cycle, 
 The implementation of self-healing mechanisms is performed using two mechanisms: liveness and readiness probes. 
 
 We use a liveness probe to interrogate whether the container is alive and in good health.
-The readiness probe, instead, is used to verify whether a container is ready to service requests. Instrumenting the readiness probe is fundamental in applications that a long startup time, or than undergo maintenance blackouts.
+
+The readiness probe, instead, is used to verify whether a container is ready to service requests. Instrumenting the readiness probe is fundamental in applications that have a long startup time, or than undergo maintenance blackouts.
 
 Both liveness and readiness probes can be instrumented using different strategies. 
 
@@ -352,15 +358,15 @@ Use `kubectl describe pod/nginx` for diagnosis
 
 ## 2.4 Segregating Workloads Using Namespaces
 
-Namespaces are a universal concept in Kubernetes and not the exclusivity of Pods, but it is convenient to learn about them in the context of Pods because, ultimately, all workloads in Kubernetes are housed in Pods and all Pods live in a namespace.
+Namespaces are a universal concept in Kubernetes and not the exclusivity of Pods, but it is convenient to learn about them in the context of Pods, because, ultimately, all workloads in Kubernetes are housed in Pods and all Pods live in a namespace.
 
 ## Segregating Workloads Using Namespaces
 
 Namespaces is the mechanism that Kubernetes uses to segregate resources by a user-defined criteria. For example, namespaces can isolate development life cycle environments such as development, testing, staging, and production. 
 
-They can also help group related resources, without necessarily intending to establish a Chinese wall; for example, a namespace may be used to group together “product catalogue” components, whereas other for “order fulfilment” ones. 
+They can also help group related resources, without necessarily intending to establish a Chinese wall; for example, a namespace may be used to separate front-end services from backend services.
 
-Let's look at namespaces in a rather empirical manner.
+Let's switch to the command line again....
 
 ### (Start Share) Google Cloud Shell
 
@@ -458,7 +464,7 @@ Labels are useful for describing small snippets of metadata, for example,
 
 Labels are a fundamental concept in Kubernetes because it is the mechanism that facilitates orchestration. When multiple Pods (or other object types) are “orchestrated,” the way in which a controller object (such as Deployment) manages a swarm of Pods is by selecting their label.
 
-Let's now see labels in action
+Let's get back to the command line again...
 
 ### (Start Sharing) Google Cloud Shell
 
