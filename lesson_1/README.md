@@ -203,7 +203,7 @@ gcloud services enable container.googleapis.com
 
 All we have accomplished so far is have access to a command line interface, set the context to our project named safari-gke, and enable access to the Kubernetes service API. We are also pre-authenticated with the Google Cloud Platform so we have everything we need to create our first Kubernetes cluster.
 
-### Creating and Destroying Kubernetes Clusters (Architecture Step)
+## Creating and Destroying Kubernetes Clusters (Architecture Step)
 
 Now that we can access the gcloud command, we will it use to create our first Kubernetes cluster, and then show you how to delete it as well.
 
