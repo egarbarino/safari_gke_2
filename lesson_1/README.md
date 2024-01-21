@@ -70,7 +70,7 @@ I work as an Enterprise Architect helping global enterprises migrate to the clou
 
 Kubernetes, and in particular, the Google Cloud's managed offering, GKE, picked my interest from an early beginning, which led to me write a book on the subject. 
 
-Now, I have summarized the book's kay lessons into this video course.
+Now, I have summarized the book's key lessons into this video course.
 
 ## Course Learning Objectives
 
