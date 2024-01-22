@@ -335,6 +335,8 @@ Let's now look at examples of both TCP and file-based Daemons....
 
 ### (Start Sharing) Google Cloud Shell
 
+### (!) Pre-Recording Setup
+
 Segment TMUX setup
 
 ```
@@ -352,7 +354,7 @@ Segment TMUX setup
 Pane 1
 
 ```
-watch -n 1 -w kubectl get pod -o wide
+watch -n 1 -w "kubectl get pod -o wide"
 ```
 
 Pane 2
