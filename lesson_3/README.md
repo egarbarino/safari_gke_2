@@ -44,7 +44,7 @@ cd ~/safari_gke_2/lesson_3/
 
 Welcome to lesson 3, High Availability and Service Discovery.
 
-This lesson is organized into five modules.
+This lesson is organized into the six sub-lessons that you see on the screen.
 
 * 3.1 Defining and Launching Deployments
 * 3.2 Performing Rolling and Blue/Green Deployments

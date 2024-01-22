@@ -40,7 +40,7 @@ cd ~/safari_gke_2/lesson_2/
 
 Welcome to Lesson 2, Pods. A pod is the most fundamental and atomic resource type in Kubernetes. A Pod wraps a container so that can we can define extra properties that help describe how the container runs and behaves in our environment. 
 
-This lesson is organized into five modules:
+This lesson is organized into five sublessons:
 
 - 2.1 Launching Docker Containers Using Pods
 - 2.2 Managing the Pod’s Lifecycle

@@ -40,7 +40,7 @@ cd ~/safari_gke_2/lesson_4/
 
 Welcome to lesson 4, in which we will focus on two new controller types: Jobs and DaemonSets.
 
-This lesson is organized into five modules:
+This lesson is organized into three sublessons:
 
 * 4.1 Implementing Batch Processes Using Jobs
 * 4.2 Scheduling Recurring Tasks Using CronJobs

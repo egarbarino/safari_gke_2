@@ -39,7 +39,7 @@ cd ~/safari_gke_2/lesson_5/
 
 Welcome to lesson 5, in which we will first explore the process of externalizing configuration and then the art of implementing StatefulSets.
 
-This lesson is organized into five modules.
+This lesson is organized into four sublessons.
 
 * 5.1 Externalizing Configuration Using ConfigMap
 * 5.2 Protecting Credentials Using Secrets
