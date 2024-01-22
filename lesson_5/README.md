@@ -466,7 +466,7 @@ ord('a') % 3
 Explore and run smart client
 
 ```
-cd ~/safari_gke_2/further
+cd ~/safari_gke_2/lesson_5/
 ```
 
 ```
@@ -550,7 +550,7 @@ watch -n 1 "gcloud compute disks list | grep NAME"
 Note preStart and postStop hooks on server.yaml
 
 ```
-cd ~/safari_gke_2/further
+cd ~/safari_gke_2/lesson_5/
 ```
 
 Note return of 503 code on shutting_down
@@ -617,7 +617,7 @@ In the second lesson we learned how to deploy Docker containers from DockerHub b
 
 In the third lesson we learned how to scale Pods and make them highly available, applying common release patterns such as blue/green and zero-downtime deployments.
 
-In the fourth lesson, we explored the use of Pods in the context different than that of microservices: batch processing using Jobs, and persistent processes using DaemonSets.
+In the fourth lesson, we explored the use of Pods in a context different than that of microservices: batch processing using Jobs, and persistent processes using DaemonSets.
 
 Finally, in the fourth lesson, we learned how to externalize configuration, and setup a distributed key/value database using the StatefulSet controller.
 
