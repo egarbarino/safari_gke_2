@@ -215,9 +215,7 @@ For static scaling we can specify the desired number of replicas in the Deployme
 
 Autoscaling, however, involves introducing a new controller type, the Horizontal Pod Autoscaler, or HPA.
 
-The Horizontal Pod Autoscaler is a regular Kubernetes API resource and controller which manages a Pod’s number of replicas in an unattended manner, based on observed resource utilization. 
-
-It can be thought of as a bot which issues kubectl scale commands on behalf of the human administrator based on a Pod’s scaling criteria, typically average CPU load.
+HPA acts like a bot which issues kubectl scale commands on behalf of the human administrator based on a Pod’s scaling criteria, typically average CPU load.
 
 Let's see both static and dynamic scaling in action...
 
