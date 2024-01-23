@@ -318,20 +318,13 @@ In a Kubernetes Node that consists of three nodes like ours, a DaemonSet would t
 
 The DaemonSet controller is useful for uniform, horizontal services, that need to be deployed at the Node level, such as log collectors, caching agents, proxies, or any other kind of system-level capability. 
 
-You may ask, why would, a distributed system such as Kubernetes, promote “tight coupling” between Pods and “boxes”? 
-
-It is because of performance advantages. Pods deployed within the same Node can share the local network interface as well as the local file system; the benefit is significantly lower latency. 
-
-I could be said, that a DaemonSet treats Nodes in the same way that Pods treat containers: while Pods ensure that two or more containers are collocated together, DaemonSets guarantee that daemons are always locally available in every Node---of course, so that consumer Pods running on those nodes can reach them. 
-
 We identify two fundamental types of Daemons, depending on how we plan to communicate with then: tcp-based daemons and file-based daemons.
 
 A TCP-based Daemon is a regular Pod managed by a DaemonSet controller whereby the services are accessed via TCP. The difference is that because every Daemon-controlled Pod is guaranteed to be deployed in every Node, there is no need for a service discovery mechanism since client Pods can simply establish a connection to the local Node they run on. 
 
 A File-based Daemon, instead, uses the file system as a common medium to exchange information with Pods running on the same node.
 
-
-Let's now look at examples of both TCP and file-based Daemons....
+Let's now see TCP and file-based Daemons in action...
 
 ### (Start Sharing) Google Cloud Shell
 
