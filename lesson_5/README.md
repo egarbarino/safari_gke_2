@@ -619,7 +619,7 @@ In the third lesson we learned how to scale Pods and make them highly available,
 
 In the fourth lesson, we explored the use of Pods in a context different than that of microservices: batch processing using Jobs, and persistent processes using DaemonSets.
 
-Finally, in the fourth lesson, we learned how to externalize configuration, and setup a distributed key/value database using the StatefulSet controller.
+Finally, in the fifth lesson, we learned how to externalize configuration, and setup a distributed key/value database using the StatefulSet controller.
 
 While the Kubernetes landscape is immense, the topics covered in this course are the most essential ones, given that they map to equivalent processes in traditional data on-prem virtualization architectures.
 
